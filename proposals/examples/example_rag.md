@@ -11,7 +11,7 @@ the bot inventing policy that isn't in the documents.
 
 I build these to be honest by design: a RAG doc-Q&A bot that answers only from
 your documents and cites the source for every claim, so anyone can click through
-and verify — and it says "not in the docs" instead of guessing ({GITHUB_URL}).
+and verify — and it says "not in the docs" instead of guessing (https://github.com/lucamarraleexfreight-netizen/freelance-ops).
 
 For you I'd ingest your SOP and policy files, stand up the same clean web UI
 pointed at your knowledge base, and wire generation to your Anthropic or OpenAI

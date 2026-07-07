@@ -11,7 +11,7 @@ pages, deduped, in a spreadsheet you can actually work from.
 
 I've already built exactly this: a config-driven scraper that handles
 pagination, deduplication, rate-limiting and retries — here's it running on a
-live site and the CSV it produced ({GITHUB_URL}).
+live site and the CSV it produced (https://github.com/lucamarraleexfreight-netizen/freelance-ops).
 
 For you I'd point it at your directory, map the four fields you listed, dedupe on
 name + phone, and hand you a clean CSV (or straight into Google Sheets). You'd

@@ -25,7 +25,7 @@ drafting:
   # Templated (keyless) drafter fields:
   value_prop: "cut hours of manual work each week"
   use_case: "auto-capturing new leads and drafting the first follow-up"
-  proof_link: "https://github.com/yourname/freelance-ops/tree/main/demos"
+  proof_link: "https://github.com/lucamarraleexfreight-netizen/freelance-ops/tree/main/demos"
   subject: "Quick automation idea for {company}"
   template: |
     Hi {contact_first},

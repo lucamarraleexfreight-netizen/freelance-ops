@@ -12,7 +12,7 @@ it first.
 
 That's exactly how I build these: an intake→enrich→draft→approve pipeline where
 each email is drafted from public info about the business, then queued for your
-one-click approval — nothing sends automatically ({GITHUB_URL}).
+one-click approval — nothing sends automatically (https://github.com/lucamarraleexfreight-netizen/freelance-ops).
 
 For you I'd wire your spreadsheet in, enrich each row (site details, likely
 contact, socials), draft a personalized email per business using your offer, and

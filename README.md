@@ -64,7 +64,7 @@ python3 ingest.py && python3 app.py         # http://127.0.0.1:5000
 ## Using the business side
 
 - **profile/** — paste the base profile or one of the three niche variants into
-  Upwork. Fill `{GITHUB_URL}` with this repo's public URL.
+  Upwork. Fill `https://github.com/lucamarraleexfreight-netizen/freelance-ops` with this repo's public URL.
 - **proposals/** — adapt `proposal_template.md`; the three examples show it
   filled per niche. Keep them 4–6 sentences.
 - **gig-tracker/** — log every lead/gig: `python3 tracker.py add ...`.

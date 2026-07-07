@@ -1,6 +1,6 @@
 # Upwork Profile
 
-> Fill the placeholders: `{GITHUB_URL}` = the public repo of these demos,
+> Fill the placeholders: `https://github.com/lucamarraleexfreight-netizen/freelance-ops` = the public repo of these demos,
 > `{RATE}` = your starting hourly (see note at the bottom). Everything else is
 > ready to paste. All three variants reference demos that exist in this repo —
 > don't claim anything the repo doesn't back up.
@@ -34,7 +34,7 @@ I'm an operator, not an hourly code-monkey: I scope the outcome, build the
 thing, and hand you something you (or I) can re-run. Working code, no stubs, and
 I tell you plainly where a human still needs to be in the loop.
 
-Demos and source: {GITHUB_URL}
+Demos and source: https://github.com/lucamarraleexfreight-netizen/freelance-ops
 
 **Skills:** Python, Web Scraping, BeautifulSoup, Automation, API Integration,
 Data Pipeline, ETL, RAG, LLM Integration, Anthropic Claude, Prompt Engineering,
@@ -63,7 +63,7 @@ portfolio that scrapes a live site end-to-end and produces the CSV.
 Tell me the source and the fields you want. I'll hand you the data, the tool, or
 both — and can run it on a schedule if you need it refreshed.
 
-Working demo + source: {GITHUB_URL}
+Working demo + source: https://github.com/lucamarraleexfreight-netizen/freelance-ops
 
 **Skills:** Python, Web Scraping, BeautifulSoup, Requests, Data Scraping,
 Pagination, Data Cleaning, Deduplication, CSV, Google Sheets API, ETL, Data
@@ -91,7 +91,7 @@ does the grunt work and you sign off in seconds.
 I work in plain Python (easy to host and own) or in n8n / Make when you want a
 visual flow your team can edit. There's a runnable demo in my portfolio.
 
-Working demo + source: {GITHUB_URL}
+Working demo + source: https://github.com/lucamarraleexfreight-netizen/freelance-ops
 
 **Skills:** Workflow Automation, Python, n8n, Make.com, Zapier, API Integration,
 Email Automation, Data Enrichment, SQLite, Lead Generation, Process Automation,
@@ -120,7 +120,7 @@ portfolio you can look at.
 If you have an internal knowledge base, support docs, or a contract/policy pile
 people keep asking about, I'll stand up a bot over it.
 
-Working demo + source: {GITHUB_URL}
+Working demo + source: https://github.com/lucamarraleexfreight-netizen/freelance-ops
 
 **Skills:** RAG, Retrieval-Augmented Generation, LLM Integration, Anthropic
 Claude, OpenAI, Prompt Engineering, Python, Flask, Vector Search, BM25,

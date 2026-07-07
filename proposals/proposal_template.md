@@ -28,7 +28,7 @@ ask for one clear next step. No "Dear Hiring Manager," no life story.
 
 > Hi {client_name} — {their_problem_restated_sharply}.
 >
-> I've already built this: {relevant_demo}. ({GITHUB_URL})
+> I've already built this: {relevant_demo}. (https://github.com/lucamarraleexfreight-netizen/freelance-ops)
 >
 > For you I'd {concrete_plan_in_one_or_two_sentences}. You'd get
 > {deliverable}, done in {turnaround}, for a fixed **${price}**.
