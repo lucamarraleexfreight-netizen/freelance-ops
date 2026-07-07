@@ -13,4 +13,4 @@ retriever:
 
 generation:
   model: "claude-haiku-4-5-20251001"   # your preferred Anthropic model
-  max_tokens: 700
+  max_tokens: 350                      # kept low on the public deploy to cap cost per question

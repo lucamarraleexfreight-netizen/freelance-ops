@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: freelance-ops-rag-docqa
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python3 ingest.py"
+    startCommand: "gunicorn -w 2 -b 0.0.0.0:$PORT app:app"
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false          # set manually in the Render dashboard — never in the repo
+      - key: RAG_PASSCODE
+        sync: false          # optional shared passcode; leave unset to rely on rate-limit + budget only
+      - key: RAG_RATE_LIMIT_PER_HOUR
+        value: "10"
+      - key: RAG_DAILY_BUDGET
+        value: "50"
