@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doc Q&amp;A</title>
+<style>
+  :root { --bg:#0f1115; --card:#1a1d24; --line:#2a2f3a; --text:#e6e8ec; --muted:#9aa3b2; --accent:#5b9dff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+         background:var(--bg); color:var(--text); }
+  .wrap { max-width:760px; margin:0 auto; padding:32px 20px 80px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:24px; }
+  .badge { display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px;
+           border:1px solid var(--line); color:var(--muted); margin-left:6px; }
+  form { display:flex; gap:8px; margin-bottom:20px; }
+  input[type=text] { flex:1; padding:12px 14px; border-radius:10px; border:1px solid var(--line);
+                     background:var(--card); color:var(--text); font-size:15px; }
+  button { padding:12px 18px; border:0; border-radius:10px; background:var(--accent);
+           color:#fff; font-weight:600; cursor:pointer; font-size:15px; }
+  button:disabled { opacity:.5; cursor:default; }
+  .answer { background:var(--card); border:1px solid var(--line); border-radius:12px;
+            padding:16px 18px; line-height:1.55; white-space:pre-wrap; }
+  .note { color:var(--muted); font-size:13px; }
+  .sources { margin-top:18px; }
+  .src { background:var(--card); border:1px solid var(--line); border-radius:10px;
+         padding:12px 14px; margin:8px 0; font-size:13px; }
+  .src .meta { color:var(--muted); font-size:12px; margin-bottom:6px; }
+  .src .n { color:var(--accent); font-weight:700; }
+  .ex { color:#c7ccd6; }
+  .examples { margin-bottom:18px; }
+  .chip { display:inline-block; font-size:12px; color:var(--muted); border:1px solid var(--line);
+          border-radius:14px; padding:5px 10px; margin:3px 4px 3px 0; cursor:pointer; }
+  .chip:hover { border-color:var(--accent); color:var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Doc Q&amp;A <span id="badge" class="badge">…</span></h1>
+  <div class="sub">Ask a question. Answers are grounded in the ingested documents and cite their sources.</div>
+
+  <div class="examples" id="examples">
+    <span class="chip">What is the refund policy?</span>
+    <span class="chip">How is data encrypted?</span>
+    <span class="chip">What's the uptime SLA and credits?</span>
+    <span class="chip">How many rows can a CSV import have?</span>
+  </div>
+
+  <form id="f">
+    <input type="text" id="q" placeholder="Ask about the docs…" autocomplete="off" autofocus>
+    <button id="go" type="submit">Ask</button>
+  </form>
+
+  <div id="out"></div>
+</div>
+
+<script>
+const out = document.getElementById('out');
+const q = document.getElementById('q');
+const go = document.getElementById('go');
+
+fetch('/health').then(r=>r.json()).then(h=>{
+  document.getElementById('badge').textContent =
+    h.backend + ' · ' + h.chunks + ' chunks · gen ' + (h.generation_enabled ? 'on' : 'off');
+}).catch(()=>{});
+
+document.getElementById('examples').addEventListener('click', e=>{
+  if (e.target.classList.contains('chip')) { q.value = e.target.textContent; ask(); }
+});
+document.getElementById('f').addEventListener('submit', e=>{ e.preventDefault(); ask(); });
+
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+async function ask(){
+  const question = q.value.trim();
+  if(!question) return;
+  go.disabled = true; out.innerHTML = '<div class="note">Searching…</div>';
+  try {
+    const r = await fetch('/ask', {method:'POST', headers:{'Content-Type':'application/json'},
+                                   body: JSON.stringify({question})});
+    const d = await r.json();
+    if (d.error){ out.innerHTML = '<div class="answer">Error: '+esc(d.error)+'</div>'; go.disabled=false; return; }
+    let html = '';
+    if (d.generated){ html += '<div class="answer">'+esc(d.answer)+'</div>'; }
+    else { html += '<div class="answer note">'+esc(d.message)+'</div>'; }
+    if (d.sources && d.sources.length){
+      html += '<div class="sources"><div class="note">Sources</div>';
+      d.sources.forEach(s=>{
+        html += '<div class="src"><div class="meta"><span class="n">['+s.n+']</span> '
+             + esc(s.source) + ' · score '+s.score+'</div><div class="ex">'+esc(s.excerpt)+'…</div></div>';
+      });
+      html += '</div>';
+    }
+    out.innerHTML = html;
+  } catch(err){ out.innerHTML = '<div class="answer">Request failed: '+esc(String(err))+'</div>'; }
+  go.disabled = false;
+}
+</script>
+</body>
+</html>

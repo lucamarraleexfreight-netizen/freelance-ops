@@ -1,0 +1,9 @@
+Flask>=3.0
+PyYAML>=6.0
+
+# Optional:
+# anthropic>=0.40                 # answer generation (needs ANTHROPIC_API_KEY)
+# sentence-transformers>=2.7      # only if retriever.backend: embeddings
+# pypdf>=4.0                      # only if ingesting .pdf files
+
+# Note: the default BM25 retriever needs NONE of the optional packages.

@@ -1,0 +1,43 @@
+# Outreach workflow config. Edit sender + drafting; the rest has sane defaults.
+
+sender:
+  name: "Luca"
+  company: "Your Automation Studio"
+  signature: |
+    Luca
+    Automation & AI Integration
+    luca@example.com
+
+# How to guess an email when intake doesn't provide one. Pure string logic —
+# no network. Placeholders: {first} {last} {f} {l}
+email_guess:
+  patterns: ["{first}", "{first}.{last}", "{f}{last}", "{first}{last}"]
+  verify_mx: false          # true does a DNS MX check (needs `pip install dnspython` + DNS access)
+
+enrichment:
+  fetch_homepage: true      # pulls <title>, meta description, social links from the site
+  timeout: 10
+
+drafting:
+  use_llm: true             # true -> Anthropic; REQUIRES ANTHROPIC_API_KEY (see .env.example)
+  model: "claude-haiku-4-5-20251001"   # change to your preferred Anthropic model
+  max_tokens: 500
+  # Templated (keyless) drafter fields:
+  value_prop: "cut hours of manual work each week"
+  use_case: "auto-capturing new leads and drafting the first follow-up"
+  proof_link: "https://github.com/yourname/freelance-ops/tree/main/demos"
+  subject: "Quick automation idea for {company}"
+  template: |
+    Hi {contact_first},
+
+    {opening}
+
+    I build small automations that {value_prop} — for a {category} business like {company}, that usually means {use_case}. Here's a working example I put together: {proof_link}
+
+    Worth a quick 10-minute call to see if it's a fit?
+
+    {signature}
+
+queue:
+  db_path: "data/queue.db"
+  outbox_dir: "data/outbox"

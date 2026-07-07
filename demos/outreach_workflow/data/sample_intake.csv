@@ -1,0 +1,5 @@
+company,contact_name,website,domain,category,email
+Acme Plumbing,Dana Reyes,http://127.0.0.1:8801/acmeplumbing,acmeplumbing.com,Plumber,
+BrightSmile Dental,Dr. Priya Shah,http://127.0.0.1:8801/brightsmiledental,brightsmiledental.com,Dentist,priya@brightsmiledental.com
+Peak Roofing Co.,Marcus Hall,http://127.0.0.1:8801/peakroofing,peakroofing.com,Roofing,
+GreenLeaf Landscaping,Sofia Nguyen,http://127.0.0.1:8801/greenleaflandscaping,greenleaflandscaping.com,Landscaping,

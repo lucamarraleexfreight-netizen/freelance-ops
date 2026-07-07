@@ -1,0 +1,48 @@
+# Live-site config -> books.toscrape.com, a public sandbox explicitly built for
+# scraping practice. Requires internet (works on your machine; the build VM has
+# no outbound web access). Proves the engine against real HTTP + real pagination.
+#
+# Run:  python3 scraper.py --config config.books.yaml
+
+source:
+  name: "books.toscrape.com"
+  start_url: "https://books.toscrape.com/catalogue/page-1.html"
+
+pagination:
+  mode: "next_link"
+  next_selector: "li.next > a"
+  max_pages: 50
+  stop_on_empty: true
+
+list:
+  row_selector: "article.product_pod"
+
+fields:
+  title:        {selector: "h3 > a",                 attr: "title"}
+  price:        {selector: "p.price_color",          attr: "text"}
+  availability: {selector: "p.instock.availability", attr: "text"}
+  rating:       {selector: "p.star-rating",          attr: "class"}
+  product_url:  {selector: "h3 > a",                 attr: "href"}
+
+dedupe:
+  keys: ["title", "price"]
+  state_file: "output/.seen_books.json"
+  persist_across_runs: false
+
+http:
+  timeout: 20
+  retries: 3
+  backoff_factor: 1.5
+  rate_limit_seconds: 1.0      # polite against a real server
+  jitter_seconds: 0.5
+  respect_robots: true
+  user_agent: "Mozilla/5.0 (compatible; LeadScraper/1.0; +https://example.com/bot)"
+
+output:
+  csv_path: "output/books.csv"
+  mode: "overwrite"
+  google_sheets:
+    enabled: false
+    spreadsheet_id: ""
+    worksheet: "Books"
+    service_account_json: "service_account.json"

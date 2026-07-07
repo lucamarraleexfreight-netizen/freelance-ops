@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Secrets / credentials — NEVER commit
+.env
+*.env
+service_account.json
+*service-account*.json
+credentials.json
+token.json
+
+# Outputs / state (built artifacts, not source)
+demos/lead_scraper/output/
+demos/outreach_workflow/data/*.db
+demos/outreach_workflow/data/outbox/
+demos/outreach_workflow/data/review.html
+demos/rag_docqa/.vector_store/
+gig-tracker/*.db
+
+# Keep sample knowledge base docs; they're part of the demo.
+
+# OS
+.DS_Store
+Thumbs.db

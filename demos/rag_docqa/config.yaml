@@ -1,0 +1,16 @@
+# RAG doc-Q&A config.
+
+knowledge_base: "knowledge_base"       # folder of docs to ingest (swappable)
+index_path: ".vector_store/index.json"
+
+chunk_size: 900          # characters per chunk (approx)
+chunk_overlap: 150       # overlap between chunks to preserve context
+top_k: 4                 # how many passages to retrieve per question
+
+retriever:
+  backend: "bm25"        # "bm25" (default, keyless, offline) or "embeddings"
+  model_name: "all-MiniLM-L6-v2"   # only used when backend: embeddings
+
+generation:
+  model: "claude-haiku-4-5-20251001"   # your preferred Anthropic model
+  max_tokens: 700

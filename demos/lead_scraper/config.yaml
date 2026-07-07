@@ -1,0 +1,57 @@
+# Default demo config -> the self-contained local fixture (zero external network).
+# Start the fixture first:  python3 fixture/serve_fixture.py
+# Then run:                 python3 scraper.py
+#
+# To repoint at a client source, copy this file and change source/list/fields.
+
+source:
+  name: "demo_business_directory (local fixture)"
+  start_url: "http://127.0.0.1:8799/directory?page=1"
+
+# How to walk from page to page.
+#   mode: next_link     -> follow a "next" anchor (most robust; used here)
+#   mode: query_param   -> increment ?page=N until an empty page
+#   mode: page_path     -> fill {page} into a URL template
+pagination:
+  mode: "next_link"
+  next_selector: "li.next > a"
+  max_pages: 20          # hard safety cap
+  stop_on_empty: true
+
+# Each record on a listing page lives inside one element matching row_selector.
+list:
+  row_selector: "div.card"
+
+# Field name -> {selector, attr}. attr defaults to "text"; use "href"/"src"/etc
+# to pull an attribute. Relative hrefs are auto-resolved to absolute URLs.
+fields:
+  name:     {selector: "h2.name",        attr: "text"}
+  category: {selector: "span.category",  attr: "text"}
+  address:  {selector: "span.address",   attr: "text"}
+  phone:    {selector: "span.phone",     attr: "text"}
+  website:  {selector: "a.website",      attr: "href"}
+
+# Composite key used to drop duplicates. persist_across_runs keeps a state file
+# so re-running only surfaces NEW records (useful for incremental client runs).
+dedupe:
+  keys: ["name", "address"]
+  state_file: "output/.seen.json"
+  persist_across_runs: false
+
+http:
+  timeout: 15
+  retries: 3
+  backoff_factor: 1.5
+  rate_limit_seconds: 0.3     # be politer (1-2s) against real sites
+  jitter_seconds: 0.2
+  respect_robots: true
+  user_agent: "Mozilla/5.0 (compatible; LeadScraper/1.0; +https://example.com/bot)"
+
+output:
+  csv_path: "output/leads.csv"
+  mode: "overwrite"           # or "append" for incremental runs
+  google_sheets:
+    enabled: false            # requires a Google service account (see README + sheets_export.py)
+    spreadsheet_id: ""
+    worksheet: "Leads"
+    service_account_json: "service_account.json"
