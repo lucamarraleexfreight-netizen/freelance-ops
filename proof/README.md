@@ -6,6 +6,7 @@ Real outputs from live runs of all three demos on 2026-07-06. No fabricated cont
 - **`review.html`** — the human-approval queue from demo #2, showing 4 LLM-generated (`claude-haiku-4-5-20251001`) personalized outreach drafts. Proves the draft→review pipeline runs end-to-end with real Anthropic API calls.
 - **`0001_AcmePlumbing.eml`** — one approved draft exported as a ready-to-send `.eml` file. Proves the approval step produces a real send-ready artifact — and that nothing auto-sends (this file just sits on disk until you open it in a mail client).
 - **`rag_answer.md`** — one real question ("How is data encrypted?") answered by demo #3 with a generated response citing its source document (`security.md`), plus retrieval scores for two other chunks that were retrieved but unused. Proves the "chat with your docs, get real citations" claim.
+- **Live demo:** https://freelance-ops-rag-docqa.onrender.com — the RAG doc-Q&A bot deployed publicly, running the same knowledge base. Rate-limited and budget-capped (see `demos/rag_docqa/app.py`) so it stays cheap under real traffic. Free-tier host spins down after inactivity — the first request after idle can take ~50s.
 
 ## Screenshots / recordings
 

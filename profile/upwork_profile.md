@@ -120,6 +120,7 @@ portfolio you can look at.
 If you have an internal knowledge base, support docs, or a contract/policy pile
 people keep asking about, I'll stand up a bot over it.
 
+Live demo (try it): https://freelance-ops-rag-docqa.onrender.com
 Working demo + source: https://github.com/lucamarraleexfreight-netizen/freelance-ops
 
 **Skills:** RAG, Retrieval-Augmented Generation, LLM Integration, Anthropic
